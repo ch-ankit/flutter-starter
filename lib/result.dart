@@ -29,12 +29,14 @@ class Result extends StatelessWidget {
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
           InkWell(
-              onTap: resetHandler,
-              splashColor: Colors.red.shade100,
-              child: Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  color: Colors.red.shade100,
-                  child: Text('Restart Quiz'))),
+            onTap: resetHandler,
+            splashColor: Colors.red.shade100,
+            child: Container(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              color: Colors.red.shade100,
+              child: Text('Restart Quiz'),
+            ),
+          ),
         ],
         mainAxisAlignment: MainAxisAlignment.center,
       ),
