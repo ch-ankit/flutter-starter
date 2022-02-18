@@ -7,6 +7,16 @@ class NewTransaction extends StatelessWidget {
 
   NewTransaction(this.addTransaction);
 
+  void SubmitData() {
+    final enteredTitle = transactionController.text;
+    final enteredAmount = amountController.text;
+    if (enteredTitle.isEmpty || double.parse(enteredAmount) <= 0) {
+      return;
+    }
+    addTransaction(
+        transactionController.text, amountController.text, DateTime.now());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,28 +31,23 @@ class NewTransaction extends StatelessWidget {
                 TextField(
                   decoration: InputDecoration(labelText: 'Title'),
                   controller: transactionController,
+                  onSubmitted: (_) => SubmitData(),
                 ),
                 TextField(
                   decoration: InputDecoration(labelText: 'Amount'),
                   controller: amountController,
+                  keyboardType: TextInputType.number,
+                  onSubmitted: (_) => SubmitData(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  padding: EdgeInsets.all(0),
-                  decoration:
-                      BoxDecoration(border: Border.all(color: Colors.purple)),
-                  child: TextButton(
-                    onPressed: () {
-                      addTransaction(transactionController.text,
-                          amountController.text, DateTime.now());
-                    },
-                    child: Text(
-                      "Add Transaction",
-                      style: TextStyle(
-                          color: Colors.purple, fontWeight: FontWeight.bold),
-                    ),
+                TextButton(
+                  onPressed: SubmitData,
+                  child: Text(
+                    "Add Transaction",
+                    style: TextStyle(
+                        color: Colors.purple, fontWeight: FontWeight.bold),
                   ),
                 )
               ],
